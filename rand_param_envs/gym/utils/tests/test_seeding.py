@@ -1,5 +1,5 @@
-from rand_param_envs.gym import error
-from rand_param_envs.gym.utils import seeding
+from gym import error
+from gym.utils import seeding
 
 def test_invalid_seeds():
     for seed in [-1, 'test']:

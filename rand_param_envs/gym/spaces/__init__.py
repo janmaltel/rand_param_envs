@@ -1,8 +1,13 @@
-from rand_param_envs.gym.spaces.box import Box
-from rand_param_envs.gym.spaces.discrete import Discrete
-from rand_param_envs.gym.spaces.multi_discrete import MultiDiscrete, DiscreteToMultiDiscrete, BoxToMultiDiscrete
-from rand_param_envs.gym.spaces.multi_binary import MultiBinary
-from rand_param_envs.gym.spaces.prng import seed
-from rand_param_envs.gym.spaces.tuple_space import Tuple
+from gym.spaces.space import Space
+from gym.spaces.box import Box
+from gym.spaces.discrete import Discrete
+from gym.spaces.multi_discrete import MultiDiscrete
+from gym.spaces.multi_binary import MultiBinary
+from gym.spaces.tuple import Tuple
+from gym.spaces.dict import Dict
 
-__all__ = ["Box", "Discrete", "MultiDiscrete", "DiscreteToMultiDiscrete", "BoxToMultiDiscrete", "MultiBinary", "Tuple"]
+from gym.spaces.utils import flatdim
+from gym.spaces.utils import flatten
+from gym.spaces.utils import unflatten
+
+__all__ = ["Space", "Box", "Discrete", "MultiDiscrete", "MultiBinary", "Tuple", "Dict", "flatdim", "flatten", "unflatten"]

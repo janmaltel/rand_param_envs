@@ -1,4 +1,4 @@
-from rand_param_envs.gym import core
+from gym import core
 
 class ArgumentEnv(core.Env):
     calls = 0

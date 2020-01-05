@@ -1,4 +1,4 @@
-from rand_param_envs.gym.utils.closer import Closer
+from gym.utils.closer import Closer
 
 class Closeable(object):
     close_called = False

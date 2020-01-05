@@ -1,4 +1,4 @@
-from rand_param_envs.gym.envs import algorithmic as alg
+from gym.envs import algorithmic as alg
 import unittest
 
 # All concrete subclasses of AlgorithmicEnv
