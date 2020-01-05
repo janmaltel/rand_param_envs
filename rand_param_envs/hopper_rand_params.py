@@ -8,9 +8,9 @@ class HopperRandParamsEnv(RandomEnv, utils.EzPickle):
         utils.EzPickle.__init__(self)
 
     def _step(self, a):
-        posbefore = self.model.data.qpos[0, 0]
+        posbefore = self.sim.data.qpos[0]
         self.do_simulation(a, self.frame_skip)
-        posafter, height, ang = self.model.data.qpos[0:3, 0]
+        posafter, height, ang = self.sim.data.qpos[0:3]
         alive_bonus = 1.0
         reward = (posafter - posbefore) / self.dt
         reward += alive_bonus
@@ -23,13 +23,13 @@ class HopperRandParamsEnv(RandomEnv, utils.EzPickle):
 
     def _get_obs(self):
         return np.concatenate([
-            self.model.data.qpos.flat[1:],
-            np.clip(self.model.data.qvel.flat, -10, 10)
+            self.sim.data.qpos.flat[1:],
+            np.clip(self.sim.data.qvel.flat, -10, 10)
         ])
 
     def reset_model(self):
-        qpos = self.init_qpos + self.np_random.uniform(low=-.005, high=.005, size=self.model.nq)
-        qvel = self.init_qvel + self.np_random.uniform(low=-.005, high=.005, size=self.model.nv)
+        qpos = self.init_qpos + np.random.uniform(low=-.005, high=.005, size=self.model.nq)
+        qvel = self.init_qvel + np.random.uniform(low=-.005, high=.005, size=self.model.nv)
         self.set_state(qpos, qvel)
         return self._get_obs()
 
@@ -39,15 +39,15 @@ class HopperRandParamsEnv(RandomEnv, utils.EzPickle):
         self.viewer.cam.lookat[2] += .8
         self.viewer.cam.elevation = -20
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     env = HopperRandParamsEnv()
     tasks = env.sample_tasks(40)
     while True:
-        env.reset()
+        env.reset_model()
         env.set_task(np.random.choice(tasks))
         print(env.model.body_mass)
         for _ in range(100):
-            env.render()
+            # env.render()
             env.step(env.action_space.sample())  # take a random action
 

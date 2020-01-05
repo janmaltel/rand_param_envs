@@ -110,7 +110,16 @@ class RandomEnv(MetaEnv, MujocoEnv):
         for param, param_val in task.items():
             param_variable = getattr(self.model, param)
             assert param_variable.shape == param_val.shape, 'shapes of new parameter value and old one must match'
-            setattr(self.model, param, param_val)
+            if param == "body_mass":
+                self.model.body_mass[:] = param_val
+            elif param == "body_inertia":
+                self.model.body_inertia[:] = param_val
+            elif param == "dof_damping":
+                self.model.dof_damping[:] = param_val
+            elif param == "geom_friction":
+                self.model.geom_friction[:] = param_val
+
+            # setattr(self.model, param, param_val)
         self.cur_params = task
 
     def get_task(self):
