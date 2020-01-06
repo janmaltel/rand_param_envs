@@ -44,7 +44,7 @@ if __name__ == "__main__":
     env = HopperRandParamsEnv()
     tasks = env.sample_tasks(40)
     while True:
-        env.reset_model()
+        env.reset()
         env.set_task(np.random.choice(tasks))
         print(env.model.body_mass)
         for _ in range(100):

@@ -122,6 +122,11 @@ class RandomEnv(MetaEnv, MujocoEnv):
             # setattr(self.model, param, param_val)
         self.cur_params = task
 
+    def reset(self):
+        self.sim.reset()
+        ob = self.reset_model()
+        return ob
+
     def get_task(self):
         return self.cur_params
 
