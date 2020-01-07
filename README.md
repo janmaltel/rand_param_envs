@@ -8,6 +8,6 @@ Tested running
 ``` 
 python run_scripts/ppo_single_run.py
 ```
-from the [ProMP repo](https://github.com/jonasrothfuss/ProMP) (`full_code` branch).
+from the [ProMP repo](https://github.com/jonasrothfuss/ProMP/tree/full_code) (`full_code` branch).
 
 
